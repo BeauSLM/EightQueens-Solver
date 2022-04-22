@@ -26,3 +26,33 @@ impl Board {
         }
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+    #[test]
+    fn empty() {
+        assert!(Board::default().check_square(0, 0));
+    }
+    
+    #[test]
+    fn same_col() {
+        let mut b = Board::default();
+        b.0[0] = Some(0);
+        assert!(!b.check_square(1, 0));
+    }
+
+    #[test]
+    fn same_downwards_diagonal() {
+        let mut b = Board::default();
+        b.0[0] = Some(0);
+        assert!(!b.check_square(1, 1));
+    }
+
+    #[test]
+    fn same_upwards_diagonal() {
+        let mut b = Board::default();
+        b.0[0] = Some(7);
+        assert!(!b.check_square(1, 6));
+    }
+}
