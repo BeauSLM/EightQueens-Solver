@@ -15,7 +15,8 @@ impl Board {
 
     fn solve(&mut self, row: i8) {
         if row > 7 {
-            println!("Solved:\n{:?}", self.0.iter().flatten().collect::<Vec<&i8>>());
+            // XXX: don't use vector!
+            println!("Solved:\n{:?}", self.0.into_iter().flatten().collect::<Vec<i8>>());
             std::process::exit(0);
         }
         for col in 0..8 {
